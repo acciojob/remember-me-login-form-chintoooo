@@ -4,7 +4,7 @@
 const loginForm = document.getElementById('loginForm');
 const existingButton = document.getElementById('existing');
 
-// Check if saved credentials exist and display the 'existing user' button if needed
+// Check if saved credentials exist and display the 'Login as existing user' button if needed
 window.onload = function () {
   if (localStorage.getItem('username') && localStorage.getItem('password')) {
     existingButton.style.display = 'block';
@@ -28,7 +28,15 @@ loginForm.addEventListener('submit', (e) => {
   }
 
   alert(`Logged in as ${username}`);
+  checkForExistingUser(); // Check if the button needs to appear
 });
+
+// Display the 'Login as existing user' button if credentials are present
+function checkForExistingUser() {
+  if (localStorage.getItem('username') && localStorage.getItem('password')) {
+    existingButton.style.display = 'block';
+  }
+}
 
 // Handle 'Login as existing user' button click
 existingButton.addEventListener('click', () => {
