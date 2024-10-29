@@ -1,1 +1,20 @@
 /*  your css code here. If applicable */
+/* styles.css */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+}
+
+form, button {
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+

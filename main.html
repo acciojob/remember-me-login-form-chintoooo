@@ -1,30 +1,27 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Login Form</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <h1>Login Form</h1>
-    <form id="loginForm">
-      <div>
-        <input type="text" id="username" placeholder="Username" required />
-      </div>
-      <div>
-        <input type="password" id="password" placeholder="Password" required />
-      </div>
-      <div>
-        <input type="checkbox" id="checkbox" />
-        <label for="checkbox">Remember me</label>
-      </div>
-      <div>
-        <input type="submit" id="submit" value="Submit" />
-      </div>
-    </form>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Login Form</h1>
+  
+  <form id="loginForm">
+    <input type="text" id="username" placeholder="Username" required><br><br>
+    <input type="password" id="password" placeholder="Password" required><br><br>
 
-    <!-- Button for existing user login, hidden by default -->
-    <button id="existing" style="display: none">Login as existing user</button>
+    <label>
+      <input type="checkbox" id="checkbox"> Remember me
+    </label><br><br>
 
-    <script type="text/javascript" src="./script.js"></script>
-  </body>
+    <input type="submit" id="submit" value="Submit"><br><br>
+  </form>
+
+  <button id="existing" style="display: none;">Login as existing user</button>
+
+  <script src="script.js"></script>
+</body>
 </html>
