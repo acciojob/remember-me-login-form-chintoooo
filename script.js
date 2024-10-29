@@ -1,45 +1,23 @@
-// script.js
+describe('example to-do app', () => {
+  it('Checking form', () => {
+    cy.visit('http://localhost:3000'); // Ensure the correct URL
 
-// Select elements from the DOM
-const loginForm = document.getElementById('loginForm');
-const existingButton = document.getElementById('existing');
+    // Confirm the form is visible
+    cy.get('#loginForm').should('be.visible');
 
-// Check if saved credentials exist and display the 'Login as existing user' button if needed
-window.onload = function () {
-  if (localStorage.getItem('username') && localStorage.getItem('password')) {
-    existingButton.style.display = 'block';
-  }
-};
+    // Wait for the label associated with the checkbox to appear
+    cy.get("label[for='checkbox']", { timeout: 10000 }).should('exist');
 
-// Handle form submission
-loginForm.addEventListener('submit', (e) => {
-  e.preventDefault();
+    // Interact with the form fields
+    cy.get('#username').type('testuser');
+    cy.get('#password').type('password123');
+    cy.get('#checkbox').check();
+    cy.get('#submit').click();
 
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-  const rememberMe = document.getElementById('checkbox').checked;
-
-  if (rememberMe) {
-    localStorage.setItem('username', username);
-    localStorage.setItem('password', password);
-  } else {
-    localStorage.removeItem('username');
-    localStorage.removeItem('password');
-  }
-
-  alert(`Logged in as ${username}`);
-  checkForExistingUser(); // Check if the button needs to appear
-});
-
-// Display the 'Login as existing user' button if credentials are present
-function checkForExistingUser() {
-  if (localStorage.getItem('username') && localStorage.getItem('password')) {
-    existingButton.style.display = 'block';
-  }
-}
-
-// Handle 'Login as existing user' button click
-existingButton.addEventListener('click', () => {
-  const savedUsername = localStorage.getItem('username');
-  alert(`Logged in as ${savedUsername}`);
+    // Confirm 'Login as existing user' button appears
+    cy.get('#existing').should('be.visible').click();
+    cy.on('window:alert', (text) => {
+      expect(text).to.contains('Logged in as testuser');
+    });
+  });
 });
